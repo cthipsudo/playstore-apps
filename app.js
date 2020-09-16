@@ -20,7 +20,7 @@ app.get('/apps', (req, res) => {
         }
     }
     if (genres) {
-        if (!['Action', 'Puzzle', 'Strategy', 'Casual', 'Arcade', 'Card'].includes(genres)) {
+        if (!['action', 'puzzle', 'strategy', 'casual', 'arcade', 'card'].includes(genres)) {
             return res.status(400).send('Genre must be, Action, Puzzle, Strategy, Casual, Arcade or Card.');
         }
     }
