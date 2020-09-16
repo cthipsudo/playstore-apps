@@ -37,8 +37,24 @@ describe('Playstore', () => {
 
   it('should return all the apps by sorting by genres: Arcade', () => {
     return supertest(app).get('/apps').query({genres: 'Arcade'}).then(res => {
-      console.log(res.body);
-      expect(res.body).to.deep.include({'Genres': 'Arcade'});
+      //console.log(res.body);
+      res.body.map(app => {
+        //console.log("Mapping this app", app);
+        return expect(app).to.deep.include({Genres: 'Arcade'});
+      });
+      //expect(res.body[2]).to.deep.nested.include({Genres: 'Arcade'});
+      //expect(res.body).to.deep.equal({Genres: 'Arcade'});
+    });
+  });
+
+  it('should return all the apps by sorting by genres: Action', () => {
+    return supertest(app).get('/apps').query({genres: 'Action'}).then(res => {
+      //console.log(res.body);
+      res.body.map(app => {
+        //console.log("Mapping this app", app);
+        return expect(app.Genres).to.include('Action');
+      });
+      //expect(res.body[2]).to.deep.nested.include({Genres: 'Arcade'});
       //expect(res.body).to.deep.equal({Genres: 'Arcade'});
     });
   });
