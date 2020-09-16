@@ -12,7 +12,7 @@ app.use(morgan('common')); // let's see what 'common' format looks like
 
 app.get('/apps', (req, res) => {
     // ALL OUR CODE HERE
-    const { genres = " ", sort } = req.query;
+    const { genres, sort } = req.query;
     let results = books;
     if (sort) {
         if (!['Rating', 'App'].includes(sort)) {
@@ -38,9 +38,9 @@ app.get('/apps', (req, res) => {
             });
         }
     }
-    res.json(results);
+    //res.send('This is the app store!');
+    res.send(results);
+    //res.json(results);
 });
 
-app.listen(8000, () => {
-    console.log('Server started on PORT 8000');
-});
+module.exports = app;
